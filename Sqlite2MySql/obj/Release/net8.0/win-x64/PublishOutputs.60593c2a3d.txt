@@ -1,0 +1,2 @@
+Z:\SQLite2MySQL\V0.1\Sqlite2MySql\bin\Release\net8.0\win-x64\publish\sqlite2mysql.pdb
+Z:\SQLite2MySQL\V0.1\Sqlite2MySql\bin\Release\net8.0\win-x64\publish\sqlite2mysql.exe

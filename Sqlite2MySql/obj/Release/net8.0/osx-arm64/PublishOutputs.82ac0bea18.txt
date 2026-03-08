@@ -1,0 +1,2 @@
+/Users/matejzavadil/Projects/SQLite2MySQL/V1.0/Sqlite2MySql/bin/Release/net8.0/osx-arm64/publish/sqlite2mysql.pdb
+/Users/matejzavadil/Projects/SQLite2MySQL/V1.0/Sqlite2MySql/bin/Release/net8.0/osx-arm64/publish/sqlite2mysql

@@ -1,0 +1,2 @@
+Z:\SQLite2MySQL\V1.0\Sqlite2MySql\bin\Release\net8.0\linux-arm64\publish\sqlite2mysql.pdb
+Z:\SQLite2MySQL\V1.0\Sqlite2MySql\bin\Release\net8.0\linux-arm64\publish\sqlite2mysql

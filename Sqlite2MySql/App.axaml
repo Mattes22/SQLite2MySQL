@@ -1,0 +1,45 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Sqlite2MySql.App"
+             RequestedThemeVariant="Default">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <!-- Světlý režim -->
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="AppBackground" Color="#EBECF0"/>
+                    <SolidColorBrush x:Key="BarBackground" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="CardBackground" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="SectionBadgeBackground" Color="#E6F0FF"/>
+                    <SolidColorBrush x:Key="SectionBadgeForeground" Color="#0052CC"/>
+                    <SolidColorBrush x:Key="TextPrimary" Color="#172B4D"/>
+                    <SolidColorBrush x:Key="TextSecondary" Color="#5E6C84"/>
+                    <SolidColorBrush x:Key="AccentBrush" Color="#0052CC"/>
+                    <SolidColorBrush x:Key="ButtonSecondaryBackground" Color="#DEEBFF"/>
+                    <SolidColorBrush x:Key="ButtonSecondaryForeground" Color="#0052CC"/>
+                    <SolidColorBrush x:Key="ButtonPrimaryBackground" Color="#0052CC"/>
+                    <SolidColorBrush x:Key="ButtonPrimaryForeground" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="StatusBackground" Color="#F4F5F7"/>
+                    <SolidColorBrush x:Key="BarBorderBrush" Color="#DFE1E6"/>
+                </ResourceDictionary>
+                <!-- Tmavý režim -->
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="AppBackground" Color="#1E1E1E"/>
+                    <SolidColorBrush x:Key="BarBackground" Color="#2D2D30"/>
+                    <SolidColorBrush x:Key="CardBackground" Color="#2D2D30"/>
+                    <SolidColorBrush x:Key="SectionBadgeBackground" Color="#264F78"/>
+                    <SolidColorBrush x:Key="SectionBadgeForeground" Color="#4FC3F7"/>
+                    <SolidColorBrush x:Key="TextPrimary" Color="#E0E0E0"/>
+                    <SolidColorBrush x:Key="TextSecondary" Color="#B0B0B0"/>
+                    <SolidColorBrush x:Key="AccentBrush" Color="#4FC3F7"/>
+                    <SolidColorBrush x:Key="ButtonSecondaryBackground" Color="#3C3C3C"/>
+                    <SolidColorBrush x:Key="ButtonSecondaryForeground" Color="#4FC3F7"/>
+                    <SolidColorBrush x:Key="ButtonPrimaryBackground" Color="#0E639C"/>
+                    <SolidColorBrush x:Key="ButtonPrimaryForeground" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="StatusBackground" Color="#252526"/>
+                    <SolidColorBrush x:Key="BarBorderBrush" Color="#3F3F46"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

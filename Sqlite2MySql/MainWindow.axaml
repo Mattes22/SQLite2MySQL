@@ -1,0 +1,108 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Sqlite2MySql.MainWindow"
+        Title="{Binding AppTitle}"
+        Width="760" Height="640"
+        MinWidth="640" MinHeight="540"
+        Background="{DynamicResource AppBackground}"
+        Icon="avares://sqlite2mysql/Assets/sqlite2mysql.ico">
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Background="{DynamicResource BarBackground}" BorderBrush="{DynamicResource BarBorderBrush}" BorderThickness="0,0,0,1" Padding="12,8">
+            <Menu Foreground="{DynamicResource TextPrimary}">
+                <MenuItem Header="{Binding MenuFile}" Foreground="{DynamicResource TextPrimary}">
+                    <MenuItem Header="{Binding MenuOpenSqlite}" Foreground="{DynamicResource TextPrimary}" Click="OnMenuOpenSqlite"/>
+                    <MenuItem Header="{Binding MenuExit}" Foreground="{DynamicResource TextPrimary}" Click="OnMenuExit"/>
+                </MenuItem>
+                <MenuItem Header="{Binding MenuSettings}" Foreground="{DynamicResource TextPrimary}" Click="OnMenuSettings"/>
+                <MenuItem Header="{Binding MenuAbout}" Foreground="{DynamicResource TextPrimary}" Click="OnMenuAbout"/>
+            </Menu>
+        </Border>
+        <ScrollViewer>
+        <StackPanel Margin="28" Spacing="24">
+            <StackPanel Margin="0,0,0,8">
+                <TextBlock Text="{Binding AppHeading}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource TextPrimary}"/>
+                <TextBlock Text="{Binding AppSubtitle}" FontSize="13" Foreground="{DynamicResource TextSecondary}" Margin="0,4,0,0"/>
+            </StackPanel>
+
+            <Border Background="{DynamicResource CardBackground}" CornerRadius="10" Padding="24" BoxShadow="0 2 8 0 #0D000000">
+                <StackPanel Spacing="16">
+                    <Border Background="{DynamicResource SectionBadgeBackground}" CornerRadius="6" Padding="10,6" HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding Section1}" FontSize="14" FontWeight="SemiBold" Foreground="{DynamicResource SectionBadgeForeground}"/>
+                    </Border>
+                    <Grid ColumnDefinitions="140,*" RowDefinitions="Auto,Auto">
+                        <TextBlock Text="{Binding LabelSqliteFile}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Column="0" Grid.Row="0"/>
+                        <Grid ColumnDefinitions="*,Auto" Grid.Column="1" Grid.Row="0" Margin="0,0,0,12">
+                            <TextBox x:Name="SqlitePath" Watermark="{Binding WatermarkSqlite}" Grid.Column="0" Margin="0,0,10,0" Padding="10,8"/>
+                            <Button x:Name="ChooseSqliteButton" Content="{Binding ButtonChoose}" Grid.Column="1" Click="OnChooseSqlite" Background="{DynamicResource ButtonSecondaryBackground}" Foreground="{DynamicResource ButtonSecondaryForeground}" Padding="16,8"/>
+                        </Grid>
+                        <TextBlock Text="{Binding LabelOutputSql}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Column="0" Grid.Row="1"/>
+                        <Grid ColumnDefinitions="*,Auto" Grid.Column="1" Grid.Row="1">
+                            <TextBox x:Name="OutputPath" Watermark="{Binding WatermarkOutput}" Grid.Column="0" Margin="0,0,10,0" Padding="10,8"/>
+                            <Button x:Name="ChooseOutputButton" Content="{Binding ButtonSaveAs}" Grid.Column="1" Click="OnChooseOutput" Background="{DynamicResource ButtonSecondaryBackground}" Foreground="{DynamicResource ButtonSecondaryForeground}" Padding="16,8"/>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Background="{DynamicResource CardBackground}" CornerRadius="10" Padding="24" BoxShadow="0 2 8 0 #0D000000">
+                <StackPanel Spacing="16">
+                    <Border Background="{DynamicResource SectionBadgeBackground}" CornerRadius="6" Padding="10,6" HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding Section2}" FontSize="14" FontWeight="SemiBold" Foreground="{DynamicResource SectionBadgeForeground}"/>
+                    </Border>
+                    <CheckBox x:Name="IncludeData" Content="{Binding CheckIncludeData}" IsChecked="True" Foreground="{DynamicResource TextPrimary}" FontSize="13"/>
+                    <Grid ColumnDefinitions="140,*">
+                        <TextBlock Text="{Binding LabelBatchSize}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Column="0"/>
+                        <NumericUpDown x:Name="BatchSize" Minimum="1" Maximum="1000000" Value="500" Width="130" HorizontalAlignment="Left" Grid.Column="1" Padding="10,8"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="140,*">
+                        <TextBlock Text="{Binding LabelTargetDb}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Column="0"/>
+                        <StackPanel Orientation="Horizontal" Spacing="16" Grid.Column="1">
+                            <TextBox x:Name="Database" Watermark="{Binding WatermarkDatabase}" Width="240" Padding="10,8"/>
+                            <CheckBox x:Name="IncludeDatabaseHeader" Content="{Binding CheckIncludeDbHeader}" IsChecked="True" VerticalAlignment="Center" Foreground="{DynamicResource TextPrimary}" FontSize="13"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Background="{DynamicResource CardBackground}" CornerRadius="10" Padding="24" BoxShadow="0 2 8 0 #0D000000">
+                <StackPanel Spacing="16">
+                    <Border Background="{DynamicResource SectionBadgeBackground}" CornerRadius="6" Padding="10,6" HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding Section3}" FontSize="14" FontWeight="SemiBold" Foreground="{DynamicResource SectionBadgeForeground}"/>
+                    </Border>
+                    <Grid ColumnDefinitions="140,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                        <TextBlock Text="{Binding LabelMysqlPath}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Row="0" Grid.Column="0"/>
+                        <StackPanel Orientation="Horizontal" Spacing="10" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
+                            <TextBox x:Name="MysqlBinPath" Watermark="{Binding WatermarkMysqlPath}" Width="300" Margin="0,0,10,0" Padding="10,8"/>
+                            <Button x:Name="ChooseMysqlBinButton" Content="{Binding ButtonChoose}" Click="OnChooseMysqlBin" Background="{DynamicResource ButtonSecondaryBackground}" Foreground="{DynamicResource ButtonSecondaryForeground}" Padding="16,8"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding LabelHost}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Row="1" Grid.Column="0"/>
+                        <TextBox x:Name="MysqlHost" Text="localhost" Width="220" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Padding="10,8"/>
+                        <TextBlock Text="{Binding LabelPort}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Row="2" Grid.Column="0"/>
+                        <NumericUpDown x:Name="MysqlPort" Minimum="1" Maximum="65535" Value="3306" Width="140" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Padding="10,8"/>
+                        <TextBlock Text="{Binding LabelUser}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Row="3" Grid.Column="0"/>
+                        <TextBox x:Name="MysqlUser" Text="root" Width="220" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" Padding="10,8"/>
+                        <TextBlock Text="{Binding LabelPassword}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Row="4" Grid.Column="0"/>
+                        <TextBox x:Name="MysqlPassword" PasswordChar="•" Width="220" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1" Padding="10,8"/>
+                    </Grid>
+                    <CheckBox x:Name="ApplyToMysql" Content="{Binding CheckApplyToMysql}" Margin="0,4,0,0" Foreground="{DynamicResource TextPrimary}" FontSize="13"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="{DynamicResource CardBackground}" CornerRadius="10" Padding="24" BoxShadow="0 2 8 0 #0D000000">
+                <StackPanel Spacing="18">
+                    <StackPanel Orientation="Horizontal" Spacing="14">
+                        <Button x:Name="TestButton" Content="{Binding ButtonTestConnection}" Click="OnTestConnection" Padding="22,12" MinWidth="130"
+                                Background="{DynamicResource ButtonSecondaryBackground}" Foreground="{DynamicResource ButtonSecondaryForeground}"/>
+                        <Button x:Name="ConvertButton" Content="{Binding ButtonConvert}" Click="OnRunConversion" Padding="26,12" MinWidth="150"
+                                Background="{DynamicResource ButtonPrimaryBackground}" Foreground="{DynamicResource ButtonPrimaryForeground}"/>
+                    </StackPanel>
+                    <ProgressBar x:Name="ConversionProgressBar" Minimum="0" Maximum="100" Value="0" IsIndeterminate="False" IsVisible="False" Margin="0,0,0,8"/>
+                    <Border Background="{DynamicResource StatusBackground}" CornerRadius="8" Padding="14">
+                        <TextBlock x:Name="StatusText" Text="{Binding CurrentStatus}" TextWrapping="Wrap" Foreground="{DynamicResource TextSecondary}" FontSize="13"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+    </DockPanel>
+</Window>

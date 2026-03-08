@@ -1,0 +1,22 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Sqlite2MySql.SettingsWindow"
+        Title="{Binding SettingsTitle}"
+        Width="400" Height="260"
+        WindowStartupLocation="CenterOwner"
+        Background="{DynamicResource AppBackground}"
+        Icon="avares://sqlite2mysql/Assets/sqlite2mysql.ico">
+    <StackPanel Margin="24" Spacing="20">
+        <TextBlock Text="{Binding SettingsTitle}" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
+        <Grid ColumnDefinitions="120,*" RowDefinitions="Auto,Auto">
+            <TextBlock Text="{Binding LabelTheme}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Row="0" Grid.Column="0"/>
+            <ComboBox x:Name="ThemeCombo" Width="200" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1"/>
+            <TextBlock Text="{Binding LabelLanguage}" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondary}" Grid.Row="1" Grid.Column="0" Margin="0,12,0,0"/>
+            <ComboBox x:Name="LanguageCombo" Width="200" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Margin="0,12,0,0"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Spacing="12" Margin="0,16,0,0" HorizontalAlignment="Right">
+            <Button Content="{Binding ButtonCancel}" Click="OnCancel" Background="{DynamicResource ButtonSecondaryBackground}" Foreground="{DynamicResource ButtonSecondaryForeground}" Padding="20,10"/>
+            <Button Content="{Binding ButtonOk}" Click="OnOk" Background="{DynamicResource ButtonPrimaryBackground}" Foreground="{DynamicResource ButtonPrimaryForeground}" Padding="24,10"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
