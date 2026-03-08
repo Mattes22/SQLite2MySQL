@@ -1,73 +1,73 @@
-# SQLite2MySQL pro macOS
+# SQLite2MySQL for macOS
 
-Sestavení probíhá v **dvou krocích**: publikování (lze i na Windows/Linux) a vytvoření .app / DMG (nutné na Macu).
+The build has **two steps**: publishing (can be done on Windows/Linux) and creating the .app / DMG (must be done on macOS).
 
-## 1. Publikování aplikace
+## 1. Publish the app
 
-Z kořene projektu (V0.1 nebo V1.0):
+From the project root (V0.1 or V1.0):
 
 **Apple Silicon (M1/M2/M3):**
 ```bash
 dotnet publish Sqlite2MySql/Sqlite2MySql.csproj -c Release -p:PublishProfile=Install-osx-arm64
 ```
-Výstup: `Sqlite2MySql/bin/Release/net8.0/osx-arm64/publish/`
+Output: `Sqlite2MySql/bin/Release/net8.0/osx-arm64/publish/`
 
 **Intel Mac:**
 ```bash
 dotnet publish Sqlite2MySql/Sqlite2MySql.csproj -c Release -p:PublishProfile=Install-osx-x64
 ```
-Výstup: `Sqlite2MySql/bin/Release/net8.0/osx-x64/publish/`
+Output: `Sqlite2MySql/bin/Release/net8.0/osx-x64/publish/`
 
-Publikovat lze i z Windows (cross-compile).
+You can also publish from Windows (cross‑compile).
 
-## 2. Vytvoření .app a DMG (na macOS)
+## 2. Create the .app and DMG (on macOS)
 
-Přeneste celý projekt (nebo aspoň složku `installer/macos` a publish výstup) na Mac.
+Copy the whole project (or at least `installer/macos` and the publish output) to a Mac.
 
 ```bash
-cd /cesta/k/V0.1   # nebo V1.0
+cd /path/to/V0.1   # or V1.0
 chmod +x installer/macos/create-app.sh installer/macos/create-dmg.sh
 ./installer/macos/create-app.sh
 ```
 
-Skript hledá publish složku v `Sqlite2MySql/bin/Release/net8.0/osx-arm64/publish` nebo `osx-x64/publish`. Pokud je jinde:
+The script looks for the publish folder in `Sqlite2MySql/bin/Release/net8.0/osx-arm64/publish` or `osx-x64/publish`. If it’s elsewhere:
 
 ```bash
-./installer/macos/create-app.sh /cesta/k/publish
+./installer/macos/create-app.sh /path/to/publish
 ```
 
-Výsledek: `installer/output/SQLite2MySQL.app`
+Result: `installer/output/SQLite2MySQL.app`
 
-### Ikona aplikace (AppIcon.icns)
+### App icon (AppIcon.icns)
 
-Skript `create-app.sh` očekává `installer/macos/AppIcon.icns`. Pokud chybí, zkusí ho vygenerovat z `sqlite2mysql.png` v kořenovém adresáři projektu.
+`create-app.sh` expects `installer/macos/AppIcon.icns`. If it’s missing, it tries to generate it from `sqlite2mysql.png` in the project root.
 
-Ruční generování (macOS):
+Manual generation (macOS):
 
 ```bash
 chmod +x installer/macos/build-icon.sh
 ./installer/macos/build-icon.sh
 ```
 
-Pokud je PNG jinde:
+If the PNG is elsewhere:
 
 ```bash
-./installer/macos/build-icon.sh /cesta/k/logo.png
+./installer/macos/build-icon.sh /path/to/logo.png
 ```
 
-### DMG (volitelně)
+### DMG (optional)
 
 ```bash
 ./installer/macos/create-dmg.sh
 ```
 
-Vytvoří se `installer/output/SQLite2MySQL_1.0.0.dmg` – uživatel přetáhne aplikaci do Aplikací.
+This creates `installer/output/SQLite2MySQL_1.0.0.dmg` — the user drags the app into Applications.
 
-## Stručný přehled
+## Quick overview
 
-| Profil              | Architektura | Použití        |
-|---------------------|-------------|----------------|
-| `Install-osx-arm64` | Apple Silicon | M1, M2, M3   |
-| `Install-osx-x64`   | Intel       | Starší Mac     |
+| Profile              | Architecture  | Use case        |
+|----------------------|---------------|-----------------|
+| `Install-osx-arm64`  | Apple Silicon | M1, M2, M3      |
+| `Install-osx-x64`    | Intel         | Older Macs      |
 
-Po vytvoření .app ji lze zkopírovat do `/Applications` nebo distribuovat jako DMG.
+After creating the .app, you can copy it to `/Applications` or distribute it as a DMG.
