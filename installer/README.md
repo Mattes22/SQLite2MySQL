@@ -1,35 +1,35 @@
-# Instalátor SQLite2MySQL (Windows)
+# SQLite2MySQL Installer (Windows)
 
-## Požadavky
+## Requirements
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [Inno Setup 6](https://jrsoftware.org/isinfo.php) (např. instalace do `C:\Program Files (x86)\Inno Setup 6`)
+- [Inno Setup 6](https://jrsoftware.org/isinfo.php) (e.g. installed to `C:\Program Files (x86)\Inno Setup 6`)
 
-## Postup sestavení instalátoru
+## Build steps
 
-1. **Publikování aplikace** (z kořene V0.1 nebo z adresáře řešení):
+1. **Publish the app** (from the V0.1 root or solution directory):
 
    ```powershell
    dotnet publish Sqlite2MySql\Sqlite2MySql.csproj -c Release -p:PublishProfile=Install
    ```
 
-   Výstup bude v `Sqlite2MySql\bin\Release\net8.0\win-x64\publish\`.
+   Output will be in `Sqlite2MySql\bin\Release\net8.0\win-x64\publish\`.
 
-2. **Sestavení instalátoru v Inno Setup:**
+2. **Build the installer in Inno Setup:**
 
-   - Spusťte **Inno Setup Compiler**
-   - Otevřete soubor `installer\sqlite2mysql.iss`
-   - Menu **Build** → **Compile** (nebo F9)
+   - Open **Inno Setup Compiler**
+   - Open `installer\sqlite2mysql.iss`
+   - **Build** → **Compile** (or F9)
 
-   Instalátor se vytvoří v `installer\output\SQLite2MySQL_Setup_1.0.0.exe`.
+   The installer will be created at `installer\output\SQLite2MySQL_Setup_1.0.0.exe`.
 
-## Rychlý příkaz (PowerShell)
+## Quick command (PowerShell)
 
-Po instalaci Inno Setup můžete z kořene V0.1 spustit:
+After installing Inno Setup, run from the V0.1 root:
 
 ```powershell
 dotnet publish Sqlite2MySql\Sqlite2MySql.csproj -c Release -p:PublishProfile=Install
 & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\sqlite2mysql.iss
 ```
 
-Instalátor najdete v `installer\output\`.
+The installer will be in `installer\output\`.
